@@ -23,7 +23,7 @@ Running the as docker container:
 - Once docker setup is done application can be run as a docker container with help of below command.
 
 - Run the docker image with below command 
-docker run -d -p 5000:5000 <url from docker repo>
+docker run -d -p 5000:5000 sangam21/sangam-repo:latest
 or
 docker run -d -p 5000:5000 <your docker image name> (If built your docker image in local machine)
 
