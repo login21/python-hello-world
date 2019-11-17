@@ -18,7 +18,7 @@ python ./web_application.py
 
 
 +++++++++++++++++++++++++++++++++
-Running the as docker container:
+Running the app as docker container:
 +++++++++++++++++++++++++++++++++
 - Once docker setup is done application can be run as a docker container with help of below command.
 
