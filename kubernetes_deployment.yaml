@@ -6,22 +6,21 @@ spec:
   replicas: 1
   template:
     metadata:
-	  name: python-hello-world
+      name: python-hello-world
       labels:
         app: python-hello-world
-		type: simpleservice
+        type: simpleservice
     spec:
       containers:
       - name: python-hello-world
         image: sangam21/sangam-repo:latest
         ports:
         - containerPort: 5000
-          name: python-hello-world
   selector: 
     matchLabels:
       app: python-hello-world
-		  
-        
+      
+      
 ---
 apiVersion: v1
 kind: Service
@@ -32,4 +31,3 @@ spec:
   - port: 5000
   selector:
     app: python-hello-world
----
