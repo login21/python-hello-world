@@ -1,0 +1,62 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: "python-hello-world-ns"
+  
+  
+-----
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "python-hello-world-deployment"
+  namespace: "python-hello-world-ns"
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: "python-hello-world"
+    spec:
+      containers:
+      - image: sangam21/sangam-repo:latest
+        name: "python-hello-world"
+        ports:
+        - containerPort: 5000
+		
+		
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: "python-hello-world-service"
+  namespace: "python-hello-world-ns"
+spec:
+  ports:
+    - port: 80
+      targetPort: 5000
+      protocol: TCP
+  type: NodePort
+  selector:
+    app: "python-hello-world"
+	
+	
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: "python-hello-world-ingress"
+  namespace: "python-hello-world-ns"
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+  labels:
+    app: python-hello-world
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /*
+            backend:
+              serviceName: "python-hello-world-service"
+              servicePort: 80
+	
